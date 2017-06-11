@@ -5,20 +5,19 @@ import com.sikorski.weatheraggregator.domain.api.WeatherApi;
 import com.sikorski.weatheraggregator.domain.api.data.WeatherApiData;
 import com.sikorski.weatheraggregator.schedulers.GetDataScheduler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
 public class GetDataSchedulerImpl implements GetDataScheduler {
 
-    private final WeatherApi weatherApi;
-    private final WeatherAggregator weatherAggregator;
+    @Autowired
+    @Qualifier(value = "yahoo")
+    private WeatherApi weatherApi;
 
     @Autowired
-    public GetDataSchedulerImpl(WeatherApi weatherApi, WeatherAggregator weatherAggregator) {
-        this.weatherApi = weatherApi;
-        this.weatherAggregator = weatherAggregator;
-    }
+    private WeatherAggregator weatherAggregator;
 
     @Override
     @Scheduled(fixedDelay = 5000)

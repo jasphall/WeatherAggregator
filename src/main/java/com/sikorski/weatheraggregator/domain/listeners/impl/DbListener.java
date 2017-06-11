@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Observable;
 
+/**
+ * Obiekt nasłuchujący danych pogodywych i zlecający ich zapis do bazy danych
+ */
 @Component
 public class DbListener implements WeatherChangeObserver {
 
@@ -24,7 +27,8 @@ public class DbListener implements WeatherChangeObserver {
     }
 
     @Override
-    public void update(Observable o, Object arg) {
+    public void update(Observable o, Object update) {
         logger().info(getClass().getSimpleName() + " updated.");
+        throw new RuntimeException("Jeszcze nie zaimplementowane.");
     }
 }

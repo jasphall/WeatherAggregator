@@ -48,4 +48,13 @@ public class ExportParameters {
 
         return Optional.empty();
     }
+
+    /**
+     * Zwraca ilość parametrów
+     *
+     * @return
+     */
+    public int length() {
+        return parameters.size();
+    }
 }

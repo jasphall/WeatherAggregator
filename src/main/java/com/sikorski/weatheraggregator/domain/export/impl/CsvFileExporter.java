@@ -24,6 +24,17 @@ public class CsvFileExporter implements DataExporter {
                 .orElseThrow(() -> new RuntimeException("Parametr filename nie został dostarczony. Dane nie zostaną zapisane."));
 
         boolean fileExists = fileExists(filename);
+        saveDataToCsv(weatherApiData, filename, fileExists);
+    }
+
+    /**
+     * Zapis danych do pliku
+     *
+     * @param weatherApiData
+     * @param filename
+     * @param fileExists
+     */
+    private void saveDataToCsv(WeatherApiData weatherApiData, String filename, boolean fileExists) {
         String headers = headers(weatherApiData);
 
         try (FileWriter fileWriter = new FileWriter(filename, true)) {
@@ -45,11 +56,7 @@ public class CsvFileExporter implements DataExporter {
      */
     private boolean fileExists(String filename) {
         File file = new File(filename);
-        if (file.exists()) {
-            return true;
-        }
-
-        return false;
+        return file.exists();
     }
 
     /**

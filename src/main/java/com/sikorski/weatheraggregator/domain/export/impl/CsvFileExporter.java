@@ -3,13 +3,12 @@ package com.sikorski.weatheraggregator.domain.export.impl;
 import com.sikorski.weatheraggregator.domain.api.data.WeatherApiData;
 import com.sikorski.weatheraggregator.domain.export.DataExporter;
 import com.sikorski.weatheraggregator.domain.export.ExportParameters;
+import com.sikorski.weatheraggregator.utils.FileUtils;
+import com.sikorski.weatheraggregator.utils.ReflectionUtils;
+import com.sikorski.weatheraggregator.utils.StringFormatter;
 import org.springframework.stereotype.Service;
-
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +22,7 @@ public class CsvFileExporter implements DataExporter {
         String filename = (String) parameters.getParameterIfExists("filename")
                 .orElseThrow(() -> new RuntimeException("Parametr filename nie został dostarczony. Dane nie zostaną zapisane."));
 
-        boolean fileExists = fileExists(filename);
+        boolean fileExists = FileUtils.fileExists(filename);
         saveDataToCsv(weatherApiData, filename, fileExists);
     }
 
@@ -49,35 +48,14 @@ public class CsvFileExporter implements DataExporter {
     }
 
     /**
-     * Sprawdza, czy plik istnieje już na dysku
-     *
-     * @param filename
-     * @return
-     */
-    private boolean fileExists(String filename) {
-        File file = new File(filename);
-        return file.exists();
-    }
-
-    /**
-     * Pobiera nagłówki pliku csv na podstawie nazw pól w obiekcie transportowym
+     * Dostarcza nagłówki do pliku csv na podstawie pól w klasie danych
      *
      * @param weatherApiData
      * @return
      */
     private String headers(WeatherApiData weatherApiData) {
-        List<String> headers = new ArrayList<>();
-        for (Field field: weatherApiData.getClass().getDeclaredFields()) {
-            headers.add(field.getName().toLowerCase());
-        }
-
-        String headersLine = headers.toString()
-                .replaceAll("\\[", "")
-                .replaceAll("\\]", "")
-                .replaceAll(" ", "")
-                .concat("\n");
-
-        return headersLine;
+        List<String> headers = ReflectionUtils.getClassFields(weatherApiData.getClass());
+        return StringFormatter.formatListToSingleString(headers);
     }
 
 }

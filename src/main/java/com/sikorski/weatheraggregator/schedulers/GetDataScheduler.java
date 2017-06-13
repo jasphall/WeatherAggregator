@@ -1,6 +1,6 @@
 package com.sikorski.weatheraggregator.schedulers;
 
-import com.sikorski.weatheraggregator.config.Loggable;
+import com.sikorski.weatheraggregator.config.logs.Loggable;
 
 /**
  * Obiekt wykonujący czasowe zapytania do API o najświeższe dane

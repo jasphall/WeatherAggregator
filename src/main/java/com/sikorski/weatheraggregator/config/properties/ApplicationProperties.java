@@ -1,11 +1,11 @@
-package com.sikorski.weatheraggregator.config;
+package com.sikorski.weatheraggregator.config.properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ConfigurationProperties {
+public class ApplicationProperties implements ConfigurationProperties {
 
     @Autowired
     private Environment environment;

@@ -42,7 +42,7 @@ public class CsvFileExporter implements DataExporter {
                 fileWriter.append(headers);
             }
 
-            fileWriter.append(weatherApiData.toOneLinerWithCommaSeparator());
+            fileWriter.append(weatherApiData.toOneLiner());
         } catch (IOException e) {
             e.printStackTrace();
         }

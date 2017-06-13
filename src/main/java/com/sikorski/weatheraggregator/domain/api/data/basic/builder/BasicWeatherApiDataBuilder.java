@@ -1,14 +1,14 @@
-package com.sikorski.weatheraggregator.domain.api.data.builder;
+package com.sikorski.weatheraggregator.domain.api.data.basic.builder;
 
 import com.sikorski.weatheraggregator.domain.api.WeatherResponseStatus;
-import com.sikorski.weatheraggregator.domain.api.data.WeatherApiData;
+import com.sikorski.weatheraggregator.domain.api.data.basic.BasicWeatherApiData;
 
 import java.util.Date;
 
 /**
  * Builder dla tworzenia obiektu transportowego danych pogodowych
  */
-public class WeatherApiDataBuilder {
+public class BasicWeatherApiDataBuilder {
 
     private Date dateTime;
     private Double temperature;
@@ -17,41 +17,46 @@ public class WeatherApiDataBuilder {
     private Double pressure;
     private WeatherResponseStatus status;
 
-    public WeatherApiDataBuilder() {
+    public BasicWeatherApiDataBuilder() {
     }
 
-    public WeatherApiDataBuilder withDateTime(Date dateTime) {
+    public BasicWeatherApiDataBuilder withDateTime(Date dateTime) {
         this.dateTime = dateTime;
         return this;
     }
 
-    public WeatherApiDataBuilder withTemperature(Double temperature) {
+    public BasicWeatherApiDataBuilder withTemperature(Double temperature) {
         this.temperature = temperature;
         return this;
     }
 
-    public WeatherApiDataBuilder withMinTemperature(Double minTemperature) {
+    public BasicWeatherApiDataBuilder withMinTemperature(Double minTemperature) {
         this.minTemperature = minTemperature;
         return this;
     }
 
-    public WeatherApiDataBuilder withMaxTemperature(Double maxTemperature) {
+    public BasicWeatherApiDataBuilder withMaxTemperature(Double maxTemperature) {
         this.maxTemperature = maxTemperature;
         return this;
     }
 
-    public WeatherApiDataBuilder withPressure(Double pressure) {
+    public BasicWeatherApiDataBuilder withPressure(Double pressure) {
         this.pressure = pressure;
         return this;
     }
 
-    public WeatherApiDataBuilder statusOK() {
+    public BasicWeatherApiDataBuilder statusOK() {
         this.status = WeatherResponseStatus.OK;
         return this;
     }
 
-    public WeatherApiData build() {
-        return new WeatherApiData(this);
+    public BasicWeatherApiDataBuilder statusNoData() {
+        this.status = WeatherResponseStatus.NO_DATA;
+        return this;
+    }
+
+    public BasicWeatherApiData build() {
+        return new BasicWeatherApiData(this);
     }
 
     public Date getDateTime() {

@@ -29,6 +29,5 @@ public class DbListener implements WeatherChangeObserver {
     @Override
     public void update(Observable o, Object update) {
         logger().info(getClass().getSimpleName() + " updated.");
-        throw new RuntimeException("Jeszcze nie zaimplementowane.");
     }
 }

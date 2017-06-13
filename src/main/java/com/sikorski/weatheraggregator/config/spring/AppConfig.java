@@ -1,4 +1,4 @@
-package com.sikorski.weatheraggregator.config;
+package com.sikorski.weatheraggregator.config.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

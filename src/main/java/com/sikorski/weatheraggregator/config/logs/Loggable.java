@@ -1,4 +1,4 @@
-package com.sikorski.weatheraggregator.config;
+package com.sikorski.weatheraggregator.config.logs;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

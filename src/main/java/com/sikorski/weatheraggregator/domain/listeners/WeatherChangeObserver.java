@@ -1,6 +1,6 @@
 package com.sikorski.weatheraggregator.domain.listeners;
 
-import com.sikorski.weatheraggregator.config.Loggable;
+import com.sikorski.weatheraggregator.config.logs.Loggable;
 
 import java.util.Observer;
 

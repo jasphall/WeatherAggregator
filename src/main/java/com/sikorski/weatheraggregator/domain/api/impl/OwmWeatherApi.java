@@ -1,9 +1,10 @@
 package com.sikorski.weatheraggregator.domain.api.impl;
 
-import com.sikorski.weatheraggregator.config.ConfigurationProperties;
+import com.sikorski.weatheraggregator.config.properties.ConfigurationProperties;
 import com.sikorski.weatheraggregator.domain.api.WeatherApi;
 import com.sikorski.weatheraggregator.domain.api.data.WeatherApiData;
-import com.sikorski.weatheraggregator.domain.api.data.builder.WeatherApiDataBuilder;
+import com.sikorski.weatheraggregator.domain.api.data.basic.BasicWeatherApiData;
+import com.sikorski.weatheraggregator.domain.api.data.basic.builder.BasicWeatherApiDataBuilder;
 import net.aksingh.owmjapis.CurrentWeather;
 import net.aksingh.owmjapis.OpenWeatherMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,14 +36,14 @@ public class OwmWeatherApi implements WeatherApi {
 
             if (currentWeather.getDateTime() == null) {
                 // API nie odpowiada
-                return WeatherApiData.empty();
+                return BasicWeatherApiData.empty();
             }
 
             float fahrenheitTemperature = currentWeather.getMainInstance().getTemperature();
             double celsiusTemperature = (fahrenheitTemperature - 32) * 5 / 9;
             logger().info("{}", celsiusTemperature);
 
-            return new WeatherApiDataBuilder()
+            return new BasicWeatherApiDataBuilder()
                     .withDateTime(currentWeather.getDateTime())
                     .withMinTemperature((double) currentWeather.getMainInstance().getMinTemperature())
                     .withMaxTemperature((double) currentWeather.getMainInstance().getMaxTemperature())
@@ -53,7 +54,7 @@ public class OwmWeatherApi implements WeatherApi {
 
         } catch (IOException e) {
             e.printStackTrace();
-            return WeatherApiData.empty();
+            return BasicWeatherApiData.empty();
         }
     }
 

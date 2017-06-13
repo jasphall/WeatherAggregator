@@ -1,6 +1,6 @@
 package com.sikorski.weatheraggregator.domain.api;
 
-import com.sikorski.weatheraggregator.config.Loggable;
+import com.sikorski.weatheraggregator.config.logs.Loggable;
 import com.sikorski.weatheraggregator.domain.api.data.WeatherApiData;
 
 /**

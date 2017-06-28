@@ -1,6 +1,6 @@
 package com.sikorski.weatheraggregator.domain.export;
 
-import com.sikorski.weatheraggregator.domain.api.data.WeatherApiData;
+import com.sikorski.weatheraggregator.domain.dataaggregation.dto.weatherdata.WeatherApiData;
 
 /**
  * Interfejs do eksportu danych

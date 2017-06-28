@@ -1,7 +1,7 @@
 package com.sikorski.weatheraggregator.domain.export.impl;
 
-import com.sikorski.weatheraggregator.domain.api.data.WeatherApiData;
-import com.sikorski.weatheraggregator.domain.api.data.basic.builder.BasicWeatherApiDataBuilder;
+import com.sikorski.weatheraggregator.domain.dataaggregation.dto.weatherdata.WeatherApiData;
+import com.sikorski.weatheraggregator.domain.dataaggregation.dto.weatherdata.basic.builder.BasicWeatherApiDataBuilder;
 import com.sikorski.weatheraggregator.domain.export.DataExporter;
 import com.sikorski.weatheraggregator.domain.export.ExportParameters;
 import org.junit.Before;

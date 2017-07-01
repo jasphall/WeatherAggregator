@@ -43,7 +43,7 @@ public class ExportParameters {
      */
     public Optional<Object> getParameterIfExists(String name) {
         if (parameters.containsKey(name)) {
-            return Optional.of(parameters.get(name));
+            return Optional.ofNullable(parameters.get(name));
         }
 
         return Optional.empty();

@@ -24,8 +24,7 @@ public class StringFormatter {
         return input.toString()
                 .replaceAll("\\[", "")
                 .replaceAll("\\]", "")
-                .replaceAll(" ", "")
-                .concat("\n");
+                .replaceAll(" ", "");
     }
 
 }

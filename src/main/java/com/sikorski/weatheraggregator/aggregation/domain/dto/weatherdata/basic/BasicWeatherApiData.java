@@ -4,12 +4,17 @@ import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.Weather
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.WeatherResponseStatus;
 import com.sikorski.weatheraggregator.application.dto.SimpleDescriptive;
 
+import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Obiekt przechowujący podstawowe dane pogodowe
  */
 public class BasicWeatherApiData implements WeatherApiData, SimpleDescriptive {
+
+    final static List<String> qualityIgnoredFields = Arrays.asList("dateTime", "status", "qualityIgnoredFields");
 
     public static BasicWeatherApiData empty() {
         return BasicWeatherApiData.builder().statusNoData().build();
@@ -61,6 +66,33 @@ public class BasicWeatherApiData implements WeatherApiData, SimpleDescriptive {
     @Override
     public boolean isEmpty() {
         return this.status == WeatherResponseStatus.NO_DATA;
+    }
+
+    @Override
+    public List<String> ignoredFieldNames() {
+        return qualityIgnoredFields;
+    }
+
+    @Override
+    public int filledValuesSize() {
+        int filledValuesSize = 0;
+
+        for (Field field: getClass().getDeclaredFields()) {
+            if (!ignoredFieldNames().contains(field.getName())) {
+                field.setAccessible(true);
+
+                try {
+                    Object value = field.get(this);
+                    if (value != null) {
+                        filledValuesSize++;
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return filledValuesSize;
     }
 
     @Override

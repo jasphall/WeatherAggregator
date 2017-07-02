@@ -54,7 +54,8 @@ class CsvFilePersistenceProvider implements DataPersistenceProvider {
      */
     private String headers(WeatherApiData weatherApiData) {
         List<String> headers = ReflectionUtils.getClassFields(weatherApiData.getClass());
-        return StringFormatter.formatListToSingleString(headers);
+        return StringFormatter.formatListToSingleString(headers)
+                .concat("\n");
     }
 
     private String saveLineToFile(String line, AppFileWriter fileWriter) throws IOException {

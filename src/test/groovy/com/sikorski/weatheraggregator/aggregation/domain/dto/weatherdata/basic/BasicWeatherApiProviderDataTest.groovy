@@ -3,9 +3,9 @@ package com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.basic
 import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.WeatherApiData
 import spock.lang.Specification
 
-class BasicWeatherApiDataTest extends Specification {
+class BasicWeatherApiProviderDataTest extends Specification {
 
-    def "empty valueobject has no data"() {
+    def "empty object has no data"() {
         given:
         WeatherApiData weatherApiData = BasicWeatherApiData.empty()
 

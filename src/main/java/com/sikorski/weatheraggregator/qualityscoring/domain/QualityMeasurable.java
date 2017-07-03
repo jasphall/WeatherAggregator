@@ -16,4 +16,10 @@ public interface QualityMeasurable {
      */
     int filledValuesSize();
 
+    /**
+     * Ilość wszystkich możliwych do wypełnienia wartości
+     * @return
+     */
+    int allFillableValuesSize();
+
 }

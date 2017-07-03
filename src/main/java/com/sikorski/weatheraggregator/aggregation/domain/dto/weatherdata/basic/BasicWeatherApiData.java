@@ -1,6 +1,6 @@
 package com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.basic;
 
-import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.WeatherApiData;
+import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.*;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.WeatherResponseStatus;
 import com.sikorski.weatheraggregator.application.dto.SimpleDescriptive;
 
@@ -26,24 +26,44 @@ public class BasicWeatherApiData implements WeatherApiData, SimpleDescriptive {
     private Date dateTime;
 
     /**
+     * Dane o lokalizacji
+     */
+    private WeatherApiDataLocation location;
+
+    /**
+     * Dane o jednostkach
+     */
+    private List<WeatherApiDataUnit> units;
+
+    /**
+     * Dane o wietrze
+     */
+    private WeatherApiDataWind wind;
+
+    /**
+     * Dane atmosferyczne
+     */
+    private WeatherApiDataAtmosphere atmosphere;
+
+    /**
+     * Wschód słońca
+     */
+    private Date sunrise;
+
+    /**
+     * Zachód słońca
+     */
+    private Date sunset;
+
+    /**
      * Temperatura
      */
     private Double temperature;
 
     /**
-     * Minimalna temperatura
+     * Prognozy temperatury z API
      */
-    private Double minTemperature;
-
-    /**
-     * Maksymalna temperatura
-     */
-    private Double maxTemperature;
-
-    /**
-     * Ciśnienie
-     */
-    private Double pressure;
+    private List<WeatherApiDataForecast> forecasts;
 
     /**
      * Status odczytu
@@ -52,11 +72,15 @@ public class BasicWeatherApiData implements WeatherApiData, SimpleDescriptive {
 
     BasicWeatherApiData(BasicWeatherApiDataBuilder builder) {
         this.dateTime = builder.getDateTime();
+        this.location = builder.getLocation();
+        this.units = builder.getUnits();
+        this.wind = builder.getWind();
+        this.atmosphere = builder.getAtmosphere();
+        this.sunrise = builder.getSunrise();
+        this.sunset = builder.getSunset();
+        this.forecasts = builder.getForecasts();
         this.temperature = builder.getTemperature();
-        this.minTemperature = builder.getMinTemperature();
-        this.maxTemperature = builder.getMaxTemperature();
         this.status = builder.getStatus();
-        this.pressure = builder.getPressure();
     }
 
     public static BasicWeatherApiDataBuilder builder() {
@@ -96,6 +120,14 @@ public class BasicWeatherApiData implements WeatherApiData, SimpleDescriptive {
     }
 
     @Override
+    public int allFillableValuesSize() {
+        return (int) Arrays.asList(getClass().getDeclaredFields())
+                .stream()
+                .filter(f -> !ignoredFieldNames().contains(f.getName()))
+                .count();
+    }
+
+    @Override
     public String toOneLiner() {
         final char separator = ',';
 
@@ -103,8 +135,7 @@ public class BasicWeatherApiData implements WeatherApiData, SimpleDescriptive {
             return "-" + separator + "-" + separator + "-" + separator + "-" + separator + "-" + separator +
                     status.name() + '\n';
         } else {
-            return dateTime.toString() + separator + temperature + separator + minTemperature + separator +
-                    maxTemperature + separator + pressure + separator + status.name() + '\n';
+            return dateTime.toString() + separator + temperature + separator + status.name() + '\n';
         }
     }
 
@@ -113,9 +144,6 @@ public class BasicWeatherApiData implements WeatherApiData, SimpleDescriptive {
         return "BasicWeatherApiData{" +
                 "dateTime=" + dateTime +
                 ", temperature=" + temperature +
-                ", minTemperature=" + minTemperature +
-                ", maxTemperature=" + maxTemperature +
-                ", pressure=" + pressure +
                 ", status=" + status +
                 '}';
     }

@@ -5,7 +5,7 @@ import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.Weather
 /**
  * Interfejs do pobierania najświeższych danych pogodowych z zewnętrznego API
  */
-public interface WeatherApi {
+public interface WeatherApiProvider {
 
     /**
      * Metoda pobierająca najświeższe dane pogodowe z API

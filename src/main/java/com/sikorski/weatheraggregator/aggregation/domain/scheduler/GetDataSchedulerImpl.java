@@ -2,7 +2,7 @@ package com.sikorski.weatheraggregator.aggregation.domain.scheduler;
 
 import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.WeatherApiData;
 import com.sikorski.weatheraggregator.aggregation.domain.events.WeatherDataAppearedEvent;
-import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.WeatherApi;
+import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.WeatherApiProvider;
 import com.sikorski.weatheraggregator.application.events.bus.EventPublisher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +17,19 @@ import java.time.LocalDateTime;
 class GetDataSchedulerImpl implements GetDataScheduler {
 
     private EventPublisher eventPublisher;
-    private WeatherApi weatherApi;
+    private WeatherApiProvider weatherApiProvider;
 
     @Autowired
-    public GetDataSchedulerImpl(EventPublisher eventPublisher, @Qualifier(value = "yahoo") WeatherApi weatherApi) {
+    public GetDataSchedulerImpl(EventPublisher eventPublisher, @Qualifier(value = "yahoo") WeatherApiProvider weatherApiProvider) {
         this.eventPublisher = eventPublisher;
-        this.weatherApi = weatherApi;
+        this.weatherApiProvider = weatherApiProvider;
     }
 
     @Override
     @Scheduled(fixedDelay = 900000)
     public void getData() {
         log.info(getClass().getSimpleName() + " execution.");
-        WeatherApiData weatherApiData = weatherApi.getNewestData();
+        WeatherApiData weatherApiData = weatherApiProvider.getNewestData();
 
         eventPublisher.publishEvent(new WeatherDataAppearedEvent(LocalDateTime.now(), weatherApiData));
     }

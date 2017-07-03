@@ -19,9 +19,6 @@ class DataQualityScoringTest extends Specification {
         where:
         score   |   data
         0       |   BasicWeatherApiData.empty()
-        0.25    |   BasicWeatherApiDataTestBuilder.withOneParameter()
-        0.5     |   BasicWeatherApiDataTestBuilder.withTwoParameters()
-        0.75    |   BasicWeatherApiDataTestBuilder.withThreeParameters()
     }
 
 }

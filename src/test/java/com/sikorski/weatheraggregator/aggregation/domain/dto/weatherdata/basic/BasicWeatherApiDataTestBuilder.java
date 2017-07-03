@@ -1,5 +1,6 @@
 package com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.basic;
 
+import java.util.Date;
 import java.util.Random;
 
 public class BasicWeatherApiDataTestBuilder {
@@ -8,22 +9,22 @@ public class BasicWeatherApiDataTestBuilder {
 
     public static BasicWeatherApiData withOneParameter() {
         return BasicWeatherApiData.builder()
-                .withMaxTemperature(random.nextDouble())
+                .withTemperature(random.nextDouble())
                 .build();
     }
 
     public static BasicWeatherApiData withTwoParameters() {
         return BasicWeatherApiData.builder()
-                .withMinTemperature(random.nextDouble())
-                .withMaxTemperature(10 + random.nextDouble())
+                .withTemperature(random.nextDouble())
+                .withSunrise(new Date())
                 .build();
     }
 
     public static BasicWeatherApiData withThreeParameters() {
         return BasicWeatherApiData.builder()
-                .withMinTemperature(random.nextDouble())
-                .withMaxTemperature(10 + random.nextDouble())
-                .withPressure(1000 + random.nextDouble())
+                .withTemperature(random.nextDouble())
+                .withSunrise(new Date())
+                .withSunset(new Date())
                 .build();
     }
 

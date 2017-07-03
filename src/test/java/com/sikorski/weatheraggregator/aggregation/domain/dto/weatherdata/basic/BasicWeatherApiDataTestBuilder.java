@@ -1,5 +1,7 @@
 package com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.basic;
 
+import com.sikorski.weatheraggregator.aggregation.domain.model.dto.BasicWeatherApiData;
+
 import java.util.Date;
 import java.util.Random;
 

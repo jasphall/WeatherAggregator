@@ -2,8 +2,9 @@ package com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo;
 
 import com.github.fedy2.weather.data.Channel;
 import com.github.fedy2.weather.data.unit.Time;
-import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.*;
-import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.basic.BasicWeatherApiData;
+import com.sikorski.weatheraggregator.aggregation.domain.model.dto.BasicWeatherApiData;
+import com.sikorski.weatheraggregator.aggregation.domain.model.*;
+import com.sikorski.weatheraggregator.aggregation.domain.model.dto.WeatherApiData;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.mapper.WeatherApiMapper;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo.timeconverter.TimeConventionConverter;
 import org.springframework.beans.factory.annotation.Autowired;

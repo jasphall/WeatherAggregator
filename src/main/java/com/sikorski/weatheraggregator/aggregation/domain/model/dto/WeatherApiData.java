@@ -1,4 +1,4 @@
-package com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata;
+package com.sikorski.weatheraggregator.aggregation.domain.model.dto;
 
 import com.sikorski.weatheraggregator.application.dto.SimpleDescriptive;
 import com.sikorski.weatheraggregator.qualityscoring.domain.QualityMeasurable;

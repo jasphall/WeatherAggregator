@@ -6,7 +6,7 @@ import com.github.fedy2.weather.data.Condition
 import com.github.fedy2.weather.data.Item
 import com.github.fedy2.weather.data.unit.Time
 import com.github.fedy2.weather.data.unit.TimeConvention
-import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.WeatherApiData
+import com.sikorski.weatheraggregator.aggregation.domain.model.dto.WeatherApiData
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.mapper.WeatherApiMapper
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo.timeconverter.TimeConventionConverter
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo.timeconverter.TimeConventionConverterImpl

@@ -1,4 +1,4 @@
-package com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata;
+package com.sikorski.weatheraggregator.aggregation.domain.model;
 
 import lombok.Value;
 

@@ -1,13 +1,12 @@
-package com.sikorski.weatheraggregator.persistence
+package com.sikorski.weatheraggregator.aggregation.domain.persistence
 
 import com.sikorski.weatheraggregator.aggregation.domain.commands.SaveWeatherCommand
 import com.sikorski.weatheraggregator.aggregation.domain.commands.handlers.SaveWeatherHandler
-import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.WeatherApiData
-import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.basic.BasicWeatherApiData
+import com.sikorski.weatheraggregator.aggregation.domain.model.dto.WeatherApiData
+import com.sikorski.weatheraggregator.aggregation.domain.model.dto.BasicWeatherApiData
 import com.sikorski.weatheraggregator.aggregation.domain.exceptions.IncorrectWeatherDataException
 import com.sikorski.weatheraggregator.application.dto.NamedParameters
 import com.sikorski.weatheraggregator.utils.AppFileWriter
-import groovy.mock.interceptor.MockFor
 import spock.lang.Specification
 
 class CsvFilePersistenceProviderTest extends Specification {

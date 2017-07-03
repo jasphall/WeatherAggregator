@@ -2,8 +2,8 @@ package com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo;
 
 import com.github.fedy2.weather.data.Channel;
 import com.github.fedy2.weather.data.unit.DegreeUnit;
-import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.WeatherApiData;
-import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.basic.BasicWeatherApiData;
+import com.sikorski.weatheraggregator.aggregation.domain.model.dto.WeatherApiData;
+import com.sikorski.weatheraggregator.aggregation.domain.model.dto.BasicWeatherApiData;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.WeatherApiProvider;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.mapper.WeatherApiMapper;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo.exceptions.YahooApiLocationUnavailableException;

@@ -2,9 +2,9 @@ package com.sikorski.weatheraggregator.aggregation.domain.commands.handlers;
 
 import com.sikorski.weatheraggregator.aggregation.domain.commands.SaveWeatherCommand;
 import com.sikorski.weatheraggregator.aggregation.domain.exceptions.IncorrectWeatherDataException;
+import com.sikorski.weatheraggregator.aggregation.domain.persistence.DataPersistenceProvider;
 import com.sikorski.weatheraggregator.application.cqrs.commands.handler.CommandHandler;
 import com.sikorski.weatheraggregator.application.dto.NamedParameters;
-import com.sikorski.weatheraggregator.persistence.DataPersistenceProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;

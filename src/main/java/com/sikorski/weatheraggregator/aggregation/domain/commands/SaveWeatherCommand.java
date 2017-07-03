@@ -1,6 +1,6 @@
 package com.sikorski.weatheraggregator.aggregation.domain.commands;
 
-import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.WeatherApiData;
+import com.sikorski.weatheraggregator.aggregation.domain.model.dto.WeatherApiData;
 import com.sikorski.weatheraggregator.application.cqrs.commands.Command;
 import lombok.Value;
 

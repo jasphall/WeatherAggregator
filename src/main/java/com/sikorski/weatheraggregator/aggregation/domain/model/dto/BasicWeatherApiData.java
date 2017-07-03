@@ -1,6 +1,6 @@
-package com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.basic;
+package com.sikorski.weatheraggregator.aggregation.domain.model.dto;
 
-import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.*;
+import com.sikorski.weatheraggregator.aggregation.domain.model.*;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.WeatherResponseStatus;
 import com.sikorski.weatheraggregator.application.dto.SimpleDescriptive;
 

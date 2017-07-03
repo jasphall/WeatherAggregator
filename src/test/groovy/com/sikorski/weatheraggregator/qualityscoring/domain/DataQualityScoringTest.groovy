@@ -1,7 +1,6 @@
 package com.sikorski.weatheraggregator.qualityscoring.domain
 
-import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.basic.BasicWeatherApiData
-import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.basic.BasicWeatherApiDataTestBuilder
+import com.sikorski.weatheraggregator.aggregation.domain.model.dto.BasicWeatherApiData
 import spock.lang.Specification
 
 class DataQualityScoringTest extends Specification {

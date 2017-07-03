@@ -1,6 +1,7 @@
 package com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.basic
 
-import com.sikorski.weatheraggregator.aggregation.domain.dto.weatherdata.WeatherApiData
+import com.sikorski.weatheraggregator.aggregation.domain.model.dto.BasicWeatherApiData
+import com.sikorski.weatheraggregator.aggregation.domain.model.dto.WeatherApiData
 import spock.lang.Specification
 
 class BasicWeatherApiProviderDataTest extends Specification {

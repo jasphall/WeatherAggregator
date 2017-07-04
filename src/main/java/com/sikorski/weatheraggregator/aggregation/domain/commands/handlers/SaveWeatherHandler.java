@@ -31,9 +31,7 @@ public class SaveWeatherHandler implements CommandHandler<SaveWeatherCommand> {
             throw new IncorrectWeatherDataException();
         }
 
-        dataPersistenceProvider.persist(command.getWeatherData(),
-                NamedParameters.oneParameter("filename", command.getFilename()));
-
+        dataPersistenceProvider.persist(command.getWeatherData(), NamedParameters.empty());
     }
 
 }

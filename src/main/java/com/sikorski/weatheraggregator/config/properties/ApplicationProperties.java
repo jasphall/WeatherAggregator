@@ -1,24 +1,18 @@
 package com.sikorski.weatheraggregator.config.properties;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 @Component
+@ComponentScan
 public class ApplicationProperties implements ConfigurationProperties {
 
-    @Autowired
-    private Environment environment;
-
-    public String getOwmApiKey() {
-        return environment.getProperty("owm_api_key");
-    }
+    @Value("${weather.location}")
+    private String weatherLocation;
 
     public String getOwmLocation() {
-        return environment.getProperty("current_location");
+        return weatherLocation;
     }
 
-    public String getCsvExportFilename() {
-        return environment.getProperty("export_csv_filename");
-    }
 }

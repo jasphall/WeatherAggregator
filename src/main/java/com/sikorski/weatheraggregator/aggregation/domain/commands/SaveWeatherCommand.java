@@ -15,9 +15,4 @@ public class SaveWeatherCommand implements Command {
      */
     private WeatherApiData weatherData;
 
-    /**
-     * Nazwa docelowego pliku csv
-     */
-    private String filename;
-
 }

@@ -22,7 +22,6 @@ class WeatherDataAppearedEventListener implements EventListener<WeatherDataAppea
 
     @Override
     public void handle(WeatherDataAppearedEvent event) {
-        String filename = configurationProperties.getCsvExportFilename();
-        commandBus.publishCommand(new SaveWeatherCommand(event.getWeatherData(), filename));
+        commandBus.publishCommand(new SaveWeatherCommand(event.getWeatherData()));
     }
 }

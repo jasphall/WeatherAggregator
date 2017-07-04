@@ -1,7 +1,7 @@
 package com.sikorski.weatheraggregator.aggregation.domain.scheduler;
 
-import com.sikorski.weatheraggregator.aggregation.domain.model.dto.WeatherApiData;
 import com.sikorski.weatheraggregator.aggregation.domain.events.WeatherDataAppearedEvent;
+import com.sikorski.weatheraggregator.aggregation.domain.model.dto.WeatherApiData;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.WeatherApiProvider;
 import com.sikorski.weatheraggregator.application.events.bus.EventPublisher;
 import lombok.extern.slf4j.Slf4j;

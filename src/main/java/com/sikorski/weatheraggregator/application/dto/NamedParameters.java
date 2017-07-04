@@ -1,5 +1,6 @@
 package com.sikorski.weatheraggregator.application.dto;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -10,6 +11,10 @@ public class NamedParameters {
 
     public NamedParameters(Map<String, Object> parameters) {
         this.parameters = parameters;
+    }
+
+    public static NamedParameters empty() {
+        return new NamedParameters(Collections.emptyMap());
     }
 
     /**

@@ -7,6 +7,7 @@ import com.sikorski.weatheraggregator.application.cqrs.commands.handler.CommandH
 import com.sikorski.weatheraggregator.application.dto.NamedParameters;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
@@ -17,20 +18,22 @@ public class SaveWeatherHandler implements CommandHandler<SaveWeatherCommand> {
     private final DataPersistenceProvider dataPersistenceProvider;
 
     @Autowired
-    public SaveWeatherHandler(DataPersistenceProvider dataPersistenceProvider) {
+    public SaveWeatherHandler(@Qualifier("dbPersistenceProvider") DataPersistenceProvider dataPersistenceProvider) {
         this.dataPersistenceProvider = dataPersistenceProvider;
     }
 
     @EventListener
     @Override
     public void handle(SaveWeatherCommand command) {
+        log.info("{} handler.", command.getClass().getSimpleName());
+
         if (command.getWeatherData() == null) {
             throw new IncorrectWeatherDataException();
         }
+
         dataPersistenceProvider.persist(command.getWeatherData(),
                 NamedParameters.oneParameter("filename", command.getFilename()));
 
-        log.info("{} handler.", command.getClass().getSimpleName());
     }
 
 }

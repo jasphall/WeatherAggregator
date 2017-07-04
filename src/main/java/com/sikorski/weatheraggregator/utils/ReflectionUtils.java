@@ -2,6 +2,7 @@ package com.sikorski.weatheraggregator.utils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -23,6 +24,30 @@ public class ReflectionUtils {
         }
 
         return headers;
+    }
+
+    public static int countNotEmptyFieldsInObject(List<Field> fields, Object o) {
+        int counter = 0;
+        for (Field field: fields) {
+            field.setAccessible(true);
+
+            try {
+                Object value = field.get(o);
+
+                if (value instanceof Collection) {
+                    Collection collection = (Collection) value;
+                    if (!collection.isEmpty()) {
+                        counter++;
+                    }
+                } else if (value != null) {
+                    counter++;
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return counter;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.sikorski.weatheraggregator.aggregation.domain.persistence;
 
 import com.sikorski.weatheraggregator.aggregation.domain.model.dto.WeatherApiData;
+import com.sikorski.weatheraggregator.aggregation.domain.model.persistence.WeatherDataModel;
 import com.sikorski.weatheraggregator.application.dto.NamedParameters;
 
 /**
@@ -16,6 +17,6 @@ public interface DataPersistenceProvider {
      * @param parameters
      *      dodatkowe parametry potrzebne przy eksporcie
      */
-    void persist(WeatherApiData weatherApiData, NamedParameters parameters);
+    WeatherDataModel persist(WeatherApiData weatherApiData, NamedParameters parameters);
 
 }

@@ -1,23 +1,36 @@
 package com.sikorski.weatheraggregator.aggregation.domain.model.dto;
 
-import com.sikorski.weatheraggregator.aggregation.domain.model.*;
+import com.sikorski.weatheraggregator.aggregation.domain.model.elements.*;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.WeatherResponseStatus;
-import com.sikorski.weatheraggregator.application.dto.SimpleDescriptive;
+import com.sikorski.weatheraggregator.utils.ReflectionUtils;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Value;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Obiekt przechowujący podstawowe dane pogodowe
  */
-public class BasicWeatherApiData implements WeatherApiData, SimpleDescriptive {
+@Getter
+public class BasicWeatherApiData implements WeatherApiData {
 
+    /**
+     * Lista pól ignorowanych przy ocenie jakości danych
+     */
     final static List<String> qualityIgnoredFields = Arrays.asList("dateTime", "status", "qualityIgnoredFields");
 
     public static BasicWeatherApiData empty() {
         return BasicWeatherApiData.builder().statusNoData().build();
+    }
+
+    public static WeatherApiDataBuilder builder() {
+        return new WeatherApiDataBuilder();
     }
 
     /**
@@ -28,22 +41,17 @@ public class BasicWeatherApiData implements WeatherApiData, SimpleDescriptive {
     /**
      * Dane o lokalizacji
      */
-    private WeatherApiDataLocation location;
-
-    /**
-     * Dane o jednostkach
-     */
-    private List<WeatherApiDataUnit> units;
+    private WeatherLocation location;
 
     /**
      * Dane o wietrze
      */
-    private WeatherApiDataWind wind;
+    private WeatherWind wind;
 
     /**
      * Dane atmosferyczne
      */
-    private WeatherApiDataAtmosphere atmosphere;
+    private WeatherAtmosphere atmosphere;
 
     /**
      * Wschód słońca
@@ -61,30 +69,31 @@ public class BasicWeatherApiData implements WeatherApiData, SimpleDescriptive {
     private Double temperature;
 
     /**
+     * Dane o jednostkach
+     */
+    private List<WeatherUnit> units = new ArrayList<>();
+
+    /**
      * Prognozy temperatury z API
      */
-    private List<WeatherApiDataForecast> forecasts;
+    private List<WeatherForecast> forecasts = new ArrayList<>();
 
     /**
      * Status odczytu
      */
     private WeatherResponseStatus status;
 
-    BasicWeatherApiData(BasicWeatherApiDataBuilder builder) {
+    public BasicWeatherApiData(WeatherApiDataBuilder builder) {
         this.dateTime = builder.getDateTime();
         this.location = builder.getLocation();
-        this.units = builder.getUnits();
         this.wind = builder.getWind();
         this.atmosphere = builder.getAtmosphere();
         this.sunrise = builder.getSunrise();
         this.sunset = builder.getSunset();
-        this.forecasts = builder.getForecasts();
         this.temperature = builder.getTemperature();
+        this.units = builder.getUnits();
+        this.forecasts = builder.getForecasts();
         this.status = builder.getStatus();
-    }
-
-    public static BasicWeatherApiDataBuilder builder() {
-        return new BasicWeatherApiDataBuilder();
     }
 
     @Override
@@ -99,52 +108,17 @@ public class BasicWeatherApiData implements WeatherApiData, SimpleDescriptive {
 
     @Override
     public int filledValuesSize() {
-        int filledValuesSize = 0;
+        List<Field> fields = Arrays.stream(getClass().getDeclaredFields())
+                .filter(f -> !ignoredFieldNames().contains(f.getName()))
+                .collect(Collectors.toList());
 
-        for (Field field: getClass().getDeclaredFields()) {
-            if (!ignoredFieldNames().contains(field.getName())) {
-                field.setAccessible(true);
-
-                try {
-                    Object value = field.get(this);
-                    if (value != null) {
-                        filledValuesSize++;
-                    }
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return filledValuesSize;
+        return ReflectionUtils.countNotEmptyFieldsInObject(fields, this);
     }
 
     @Override
     public int allFillableValuesSize() {
-        return (int) Arrays.asList(getClass().getDeclaredFields())
-                .stream()
+        return (int) Arrays.stream(getClass().getDeclaredFields())
                 .filter(f -> !ignoredFieldNames().contains(f.getName()))
                 .count();
-    }
-
-    @Override
-    public String toOneLiner() {
-        final char separator = ',';
-
-        if (isEmpty()) {
-            return "-" + separator + "-" + separator + "-" + separator + "-" + separator + "-" + separator +
-                    status.name() + '\n';
-        } else {
-            return dateTime.toString() + separator + temperature + separator + status.name() + '\n';
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "BasicWeatherApiData{" +
-                "dateTime=" + dateTime +
-                ", temperature=" + temperature +
-                ", status=" + status +
-                '}';
     }
 }

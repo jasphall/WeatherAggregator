@@ -3,8 +3,8 @@ package com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo;
 import com.github.fedy2.weather.data.Channel;
 import com.github.fedy2.weather.data.unit.Time;
 import com.sikorski.weatheraggregator.aggregation.domain.model.dto.BasicWeatherApiData;
-import com.sikorski.weatheraggregator.aggregation.domain.model.*;
 import com.sikorski.weatheraggregator.aggregation.domain.model.dto.WeatherApiData;
+import com.sikorski.weatheraggregator.aggregation.domain.model.elements.*;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.mapper.WeatherApiMapper;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo.timeconverter.TimeConventionConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +36,11 @@ class YahooWeatherApiMapper implements WeatherApiMapper<Channel> {
         }
 
         Date dateTime = channel.getLastBuildDate();
-        WeatherApiDataLocation location = mapLocation(channel);
-        List<WeatherApiDataUnit> units = mapUnits(channel);
-        WeatherApiDataWind wind = mapWind(channel);
-        WeatherApiDataAtmosphere atmosphere = mapAtmosphere(channel);
-        List<WeatherApiDataForecast> forecasts = mapForecasts(channel);
+        WeatherLocation location = mapLocation(channel);
+        List<WeatherUnit> units = mapUnits(channel);
+        WeatherWind wind = mapWind(channel);
+        WeatherAtmosphere atmosphere = mapAtmosphere(channel);
+        List<WeatherForecast> forecasts = mapForecasts(channel);
 
         Date sunrise = null;
         Date sunset = null;
@@ -63,48 +63,48 @@ class YahooWeatherApiMapper implements WeatherApiMapper<Channel> {
                 .build();
     }
 
-    private WeatherApiDataLocation mapLocation(Channel channel) {
+    private WeatherLocation mapLocation(Channel channel) {
         if (channel.getLocation() == null) {
             return null;
         }
 
-        return new WeatherApiDataLocation(
+        return new WeatherLocation(
                 channel.getLocation().getCity(),
                 channel.getLocation().getRegion(),
                 channel.getLocation().getCountry());
     }
 
-    private List<WeatherApiDataUnit> mapUnits(Channel channel) {
+    private List<WeatherUnit> mapUnits(Channel channel) {
         if (channel.getUnits() == null) {
             return null;
         }
 
         return Arrays.asList(
-                WeatherApiDataUnit.of("distance", channel.getUnits().getDistance().name()),
-                WeatherApiDataUnit.of("pressure", channel.getUnits().getPressure().name()),
-                WeatherApiDataUnit.of("speed", channel.getUnits().getSpeed().name()),
-                WeatherApiDataUnit.of("temperature", channel.getUnits().getTemperature().name())
+                WeatherUnit.of("distance", channel.getUnits().getDistance().name()),
+                WeatherUnit.of("pressure", channel.getUnits().getPressure().name()),
+                WeatherUnit.of("speed", channel.getUnits().getSpeed().name()),
+                WeatherUnit.of("temperature", channel.getUnits().getTemperature().name())
         );
     }
 
-    private WeatherApiDataWind mapWind(Channel channel) {
+    private WeatherWind mapWind(Channel channel) {
         if (channel.getWind() == null) {
             return null;
         }
 
-        return new WeatherApiDataWind(
+        return new WeatherWind(
                 channel.getWind().getChill(),
                 channel.getWind().getDirection(),
                 channel.getWind().getSpeed()
         );
     }
 
-    private WeatherApiDataAtmosphere mapAtmosphere(Channel channel) {
+    private WeatherAtmosphere mapAtmosphere(Channel channel) {
         if (channel.getAtmosphere() == null) {
             return null;
         }
 
-        return new WeatherApiDataAtmosphere(
+        return new WeatherAtmosphere(
                 channel.getAtmosphere().getHumidity(),
                 channel.getAtmosphere().getVisibility(),
                 channel.getAtmosphere().getPressure()
@@ -123,14 +123,14 @@ class YahooWeatherApiMapper implements WeatherApiMapper<Channel> {
         return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
     }
 
-    private List<WeatherApiDataForecast> mapForecasts(Channel channel) {
+    private List<WeatherForecast> mapForecasts(Channel channel) {
         if (channel.getItem().getForecasts() == null) {
             return null;
         }
 
         return channel.getItem().getForecasts()
                 .stream()
-                .map(f -> new WeatherApiDataForecast(f.getDate(), f.getLow(), f.getHigh()))
+                .map(f -> WeatherForecast.of(f.getDate(), f.getLow(), f.getHigh()))
                 .collect(Collectors.toList());
     }
 

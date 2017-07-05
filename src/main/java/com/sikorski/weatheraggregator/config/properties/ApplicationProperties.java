@@ -11,7 +11,7 @@ public class ApplicationProperties implements ConfigurationProperties {
     @Value("${weather.location}")
     private String weatherLocation;
 
-    public String getOwmLocation() {
+    public String getLocation() {
         return weatherLocation;
     }
 

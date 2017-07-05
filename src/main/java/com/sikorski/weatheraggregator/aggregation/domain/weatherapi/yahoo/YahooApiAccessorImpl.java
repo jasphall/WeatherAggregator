@@ -3,6 +3,7 @@ package com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo;
 import com.github.fedy2.weather.YahooWeatherService;
 import com.github.fedy2.weather.data.Channel;
 import com.github.fedy2.weather.data.unit.DegreeUnit;
+import com.sikorski.weatheraggregator.aggregation.domain.location.Location;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo.exceptions.YahooApiLocationUnavailableException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,11 @@ class YahooApiAccessorImpl implements YahooApiAccessor {
     }
 
     @Override
-    public Channel getLocationCurrentWeather(String location, DegreeUnit degreeUnit)
+    public Channel getLocationCurrentWeather(Location location, DegreeUnit degreeUnit)
             throws YahooApiLocationUnavailableException {
 
         YahooWeatherService.LimitDeclaration locationState = yahooWeatherService
-                .getForecastForLocation(location, degreeUnit);
+                .getForecastForLocation(location.getCityName(), degreeUnit);
 
         try {
             List<Channel> currentLocationsWeather = locationState.all();

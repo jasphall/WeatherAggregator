@@ -1,5 +1,6 @@
 package com.sikorski.weatheraggregator.aggregation.domain.weatherapi;
 
+import com.sikorski.weatheraggregator.aggregation.domain.location.Location;
 import com.sikorski.weatheraggregator.aggregation.domain.model.dto.WeatherApiData;
 
 /**
@@ -12,6 +13,6 @@ public interface WeatherApiProvider {
      *
      * @return
      */
-    WeatherApiData getNewestData();
+    WeatherApiData getNewestData(Location location);
 
 }

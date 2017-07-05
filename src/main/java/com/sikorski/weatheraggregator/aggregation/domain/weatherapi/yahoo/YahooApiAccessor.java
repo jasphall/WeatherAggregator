@@ -2,6 +2,7 @@ package com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo;
 
 import com.github.fedy2.weather.data.Channel;
 import com.github.fedy2.weather.data.unit.DegreeUnit;
+import com.sikorski.weatheraggregator.aggregation.domain.location.Location;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo.exceptions.YahooApiLocationUnavailableException;
 
 /**
@@ -16,6 +17,6 @@ public interface YahooApiAccessor {
      * @param degreeUnit
      * @return
      */
-    Channel getLocationCurrentWeather(String location, DegreeUnit degreeUnit) throws YahooApiLocationUnavailableException;
+    Channel getLocationCurrentWeather(Location location, DegreeUnit degreeUnit) throws YahooApiLocationUnavailableException;
 
 }

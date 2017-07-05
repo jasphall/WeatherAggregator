@@ -2,6 +2,7 @@ package com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo;
 
 import com.github.fedy2.weather.data.Channel;
 import com.github.fedy2.weather.data.unit.DegreeUnit;
+import com.sikorski.weatheraggregator.aggregation.domain.location.Location;
 import com.sikorski.weatheraggregator.aggregation.domain.model.dto.BasicWeatherApiData;
 import com.sikorski.weatheraggregator.aggregation.domain.model.dto.WeatherApiData;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.WeatherApiProvider;
@@ -16,28 +17,25 @@ import org.springframework.stereotype.Service;
  * Obsługa API Yahoo
  */
 @Service(value = "yahoo")
-class YahooWeatherApiProviderProvider implements WeatherApiProvider {
+class YahooWeatherApiProvider implements WeatherApiProvider {
 
-    private final ConfigurationProperties configurationProperties;
     private final YahooApiAccessor yahooApiAccessor;
     private final WeatherApiMapper weatherApiMapper;
 
     @Autowired
-    public YahooWeatherApiProviderProvider(
-            ConfigurationProperties configurationProperties,
+    public YahooWeatherApiProvider(
             YahooApiAccessor yahooApiAccessor,
             @Qualifier("yahooWeatherApiMapper") WeatherApiMapper weatherApiMapper) {
-        this.configurationProperties = configurationProperties;
         this.yahooApiAccessor = yahooApiAccessor;
         this.weatherApiMapper = weatherApiMapper;
     }
 
     @Override
-    public WeatherApiData getNewestData() {
+    public WeatherApiData getNewestData(Location location) {
         Channel currentWeather;
 
         try {
-            currentWeather = yahooApiAccessor.getLocationCurrentWeather(configurationProperties.getOwmLocation(), DegreeUnit.CELSIUS);
+            currentWeather = yahooApiAccessor.getLocationCurrentWeather(location, DegreeUnit.CELSIUS);
         } catch (YahooApiLocationUnavailableException e) {
             return BasicWeatherApiData.empty();
         }

@@ -9,6 +9,6 @@ public interface ConfigurationProperties {
      * Pobranie lokalizacji do śledzenia pogodowego
      * @return
      */
-    String getOwmLocation();
+    String getLocation();
 
 }

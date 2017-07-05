@@ -4,7 +4,6 @@ import com.sikorski.weatheraggregator.aggregation.domain.model.persistence.Weath
 import com.sikorski.weatheraggregator.application.persistence.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;

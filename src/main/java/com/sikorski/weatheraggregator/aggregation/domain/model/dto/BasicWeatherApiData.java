@@ -3,9 +3,7 @@ package com.sikorski.weatheraggregator.aggregation.domain.model.dto;
 import com.sikorski.weatheraggregator.aggregation.domain.model.elements.*;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.WeatherResponseStatus;
 import com.sikorski.weatheraggregator.utils.ReflectionUtils;
-import lombok.Data;
 import lombok.Getter;
-import lombok.Value;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -99,6 +97,11 @@ public class BasicWeatherApiData implements WeatherApiData {
     @Override
     public boolean isEmpty() {
         return this.status == WeatherResponseStatus.NO_DATA;
+    }
+
+    @Override
+    public String getLocationCity() {
+        return location == null ? "" : location.getCity();
     }
 
     @Override

@@ -13,4 +13,10 @@ public interface WeatherApiData extends QualityMeasurable {
      */
     boolean isEmpty();
 
+    /**
+     * Pobiera nazwę lokalizacji, której dotyczy wpis
+     * @return
+     */
+    String getLocationCity();
+
 }

@@ -6,40 +6,40 @@ class StringFormatterTest extends Specification {
 
     def "should words with comma in one-liner be ignored"() {
         given:
-        List<String> words = givenWordsWithCommas()
+            List<String> words = givenWordsWithCommas()
 
         when:
-        String oneLiner = StringFormatter.formatListToSingleString(words)
+            String oneLiner = StringFormatter.formatListToSingleString(words)
 
         then:
-        int numberOfCommas = thenGetNumberOfCommasInWord(oneLiner)
-        numberOfCommas == words.size()-1
+            int numberOfCommas = thenGetNumberOfCommasInWord(oneLiner)
+            numberOfCommas == words.size()-1
     }
 
-    def "should well prepared #wordList return proper one-liner #size"() {
+    def "should well prepared wordList return proper one-liner size"() {
         when:
-        String oneLiner = StringFormatter.formatListToSingleString(wordList)
+            String oneLiner = StringFormatter.formatListToSingleString(wordList)
 
         then:
-        thenGetNumberOfWordsInOneLiner(oneLiner) == size
+            thenGetNumberOfWordsInOneLiner(oneLiner) == size
 
         where:
-        wordList                |   size
-        ["ala"]                 |   1
-        ["ala ma", "kota"]      |   2
-        ["ala", "ma", ""]       |   2
-        ["ala", "ma", "kota"]   |   3
+            wordList                |   size
+            ["ala"]                 |   1
+            ["ala ma", "kota"]      |   2
+            ["ala", "ma", ""]       |   2
+            ["ala", "ma", "kota"]   |   3
     }
 
     def "should empty list returns empty string"() {
         given:
-        List<String> words = Collections.emptyList()
+            List<String> words = Collections.emptyList()
 
         when:
-        String oneLiner = StringFormatter.formatListToSingleString(words)
+            String oneLiner = StringFormatter.formatListToSingleString(words)
 
         then:
-        oneLiner == ""
+            oneLiner == ""
     }
 
     private List<String> givenWordsWithCommas() {

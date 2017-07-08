@@ -6,52 +6,52 @@ import spock.lang.Specification
 
 class BasicWeatherApiProviderDataTest extends Specification {
 
-    def "empty object has no data"() {
-        given:
-        WeatherApiData weatherApiData = BasicWeatherApiData.empty()
+    def "empty weather data object has no data"() {
+        given: "empty weather data object"
+            WeatherApiData weatherApiData = BasicWeatherApiData.empty()
 
-        when:
-        int filledValuesSize = weatherApiData.filledValuesSize()
+        when: "check filled values size in object"
+            int filledValuesSize = weatherApiData.filledValuesSize()
 
-        then:
-        weatherApiData.isEmpty()
-        filledValuesSize == 0
+        then: "object should has no filled values and should be empty"
+            weatherApiData.isEmpty()
+            filledValuesSize == 0
     }
 
-    def "filledValuesSize has correct result value when given one parameter"() {
-        given:
-        WeatherApiData variant_1 = BasicWeatherApiDataTestBuilder.withOneParameter()
+    def "filledValuesSize has correct result value when one parameter given"() {
+        given: "weather data object with one parameter filled"
+            WeatherApiData variant_1 = BasicWeatherApiDataTestBuilder.withOneParameter()
 
-        when:
-        int filledValuesSize = variant_1.filledValuesSize()
+        when: "check filled values size in object"
+            int filledValuesSize = variant_1.filledValuesSize()
 
-        then:
-        !variant_1.isEmpty()
-        filledValuesSize == 1
+        then: "object should not be empty and its filled values size should be 1"
+            !variant_1.isEmpty()
+            filledValuesSize == 1
     }
 
     def "filledValuesSize has correct result value when given two parameters"() {
-        given:
-        WeatherApiData variant_2 = BasicWeatherApiDataTestBuilder.withTwoParameters()
+        given: "weather data object with two parameters filled"
+            WeatherApiData variant_2 = BasicWeatherApiDataTestBuilder.withTwoParameters()
 
-        when:
-        int filledValuesSize = variant_2.filledValuesSize()
+        when: "check filled values size in object"
+            int filledValuesSize = variant_2.filledValuesSize()
 
-        then:
-        !variant_2.isEmpty()
-        filledValuesSize == 2
+        then: "object should not be empty and its filled values size should be 2"
+            !variant_2.isEmpty()
+            filledValuesSize == 2
     }
 
     def "filledValuesSize has correct result value when given three parameters"() {
-        given:
-        WeatherApiData variant_3 = BasicWeatherApiDataTestBuilder.withThreeParameters()
+        given: "weather data object with three parameters filled"
+            WeatherApiData variant_3 = BasicWeatherApiDataTestBuilder.withThreeParameters()
 
-        when:
-        int filledValuesSize = variant_3.filledValuesSize()
+        when: "check filled values size in object"
+            int filledValuesSize = variant_3.filledValuesSize()
 
-        then:
-        !variant_3.isEmpty()
-        filledValuesSize == 3
+        then: "object should not be empty and its filled values size should be 3"
+            !variant_3.isEmpty()
+            filledValuesSize == 3
     }
 
 }

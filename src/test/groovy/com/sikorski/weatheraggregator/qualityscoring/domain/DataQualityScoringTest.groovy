@@ -5,19 +5,19 @@ import spock.lang.Specification
 
 class DataQualityScoringTest extends Specification {
 
-    def "quality equals #score when configured #data given"() {
+    def "quality correct when configured data given"() {
         given:
-        DataQualityScoring qualityScoring = new SimpleDataQualityScoring()
+            DataQualityScoring qualityScoring = new SimpleDataQualityScoring()
 
         when:
-        double calculatedScore = qualityScoring.score(data)
+            double calculatedScore = qualityScoring.score(data)
 
         then:
-        calculatedScore == score
+            calculatedScore == score
 
         where:
-        score   |   data
-        0       |   BasicWeatherApiData.empty()
+            score   |   data
+            0       |   BasicWeatherApiData.empty()
     }
 
 }

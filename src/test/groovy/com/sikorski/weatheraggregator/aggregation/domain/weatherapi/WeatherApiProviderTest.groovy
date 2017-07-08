@@ -9,13 +9,15 @@ import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo.YahooA
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo.YahooWeatherApiMapper
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo.YahooWeatherApiProvider
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo.timeconverter.TimeConventionConverterImpl
+import spock.lang.Shared
 import spock.lang.Specification
 
 class WeatherApiProviderTest extends Specification {
 
+    @Shared
     WeatherApiProvider weatherApiProvider
 
-    def setup() {
+    def setupSpec() {
         YahooApiAccessor yahooApiAccessor = new YahooApiAccessorImpl()
         WeatherApiMapper weatherApiMapper = new YahooWeatherApiMapper(new TimeConventionConverterImpl())
 
@@ -24,14 +26,14 @@ class WeatherApiProviderTest extends Specification {
 
     def "test if location in result data is correct"() {
         given:
-        Location location = givenWeatherLocation()
-        final String expectedLocation = "Warsaw"
+            Location location = givenWeatherLocation()
+            final String expectedLocation = "Warsaw"
 
         when:
-        WeatherApiData weatherApiData = weatherApiProvider.getNewestData(location)
+            WeatherApiData weatherApiData = weatherApiProvider.getNewestData(location)
 
         then:
-        weatherApiData.getLocationCity() == expectedLocation
+            weatherApiData.getLocationCity() == expectedLocation
     }
 
     private Location givenWeatherLocation() {

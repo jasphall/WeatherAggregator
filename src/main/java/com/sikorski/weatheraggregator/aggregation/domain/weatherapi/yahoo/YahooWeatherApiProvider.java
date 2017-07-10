@@ -8,7 +8,6 @@ import com.sikorski.weatheraggregator.aggregation.domain.model.dto.WeatherApiDat
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.WeatherApiProvider;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.mapper.WeatherApiMapper;
 import com.sikorski.weatheraggregator.aggregation.domain.weatherapi.yahoo.exceptions.YahooApiLocationUnavailableException;
-import com.sikorski.weatheraggregator.config.properties.ConfigurationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

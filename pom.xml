@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>weatheraggregator</name>
-	<description></description>
+	<description>Agregacja danych pogodowych</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

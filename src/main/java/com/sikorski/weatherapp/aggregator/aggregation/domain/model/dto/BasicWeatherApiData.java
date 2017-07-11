@@ -2,7 +2,7 @@ package com.sikorski.weatherapp.aggregator.aggregation.domain.model.dto;
 
 import com.sikorski.weatherapp.aggregator.aggregation.domain.model.elements.*;
 import com.sikorski.weatherapp.aggregator.aggregation.domain.weatherapi.WeatherResponseStatus;
-import com.sikorski.weatherapp.aggregator.utils.ReflectionUtils;
+import com.sikorski.weatherapp.commons.utils.ReflectionUtils;
 import lombok.Getter;
 
 import java.lang.reflect.Field;

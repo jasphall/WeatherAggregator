@@ -5,10 +5,10 @@
 
 	<groupId>com.sikorski</groupId>
 	<artifactId>weatheraggregator</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>weatheraggregator</name>
+	<name>WeatherAggregator</name>
 	<description>Agregacja danych pogodowych</description>
 
 	<parent>
@@ -32,6 +32,12 @@
 	</repositories>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.sikorski.weatherapp</groupId>
+			<artifactId>commons</artifactId>
+			<version>1.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jersey</artifactId>
@@ -137,6 +143,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>

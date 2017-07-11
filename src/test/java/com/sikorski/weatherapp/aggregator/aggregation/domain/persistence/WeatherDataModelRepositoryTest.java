@@ -1,7 +1,7 @@
 package com.sikorski.weatherapp.aggregator.aggregation.domain.persistence;
 
 import com.sikorski.weatherapp.aggregator.aggregation.domain.model.persistence.WeatherDataModel;
-import com.sikorski.weatherapp.aggregator.utils.DateUtils;
+import com.sikorski.weatherapp.commons.utils.DateUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
